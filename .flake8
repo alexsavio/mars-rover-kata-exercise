@@ -1,0 +1,22 @@
+[flake8]
+count = true
+import-order-style = pep8
+max-line-length = 80
+max-complexity = 10
+statistics = true
+exclude =
+    .git,
+    __pycache__,
+    old,
+    build,
+    dist
+select = C,E,F,W,B,B950
+ignore =
+    # Use bugbear line length detection instead of default
+    E501,
+    # PEP8 allows hanging indent, but E126 dosn't seem to.
+    E126,
+    # missing trailing comma
+    C812,
+    # Do not perform function calls in argument defaults.
+    B008,
