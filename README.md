@@ -1,8 +1,5 @@
 # Mars Rover Kata
 
-This my deliverable for the Mars Rover Kata from
-Equal Experts (version 1.2, last updated on 2020-10-26).
-
 ## Issue description
 
 You are part of the team that explores Mars by sending remotely controlled vehicles to the surface of
