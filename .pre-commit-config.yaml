@@ -1,0 +1,37 @@
+---
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.2.0
+    hooks:
+      - id: check-ast
+      - id: check-symlinks
+      - id: check-executables-have-shebangs
+      - id: check-merge-conflict
+      - id: check-json
+      - id: check-yaml
+        args: [--unsafe]
+      - id: detect-private-key
+      - id: detect-aws-credentials
+      - id: trailing-whitespace
+      # - id: no-commit-to-branch # No (direct) commits to master
+  - repo: https://github.com/asottile/add-trailing-comma
+    rev: v2.0.1
+    hooks:
+    -   id: add-trailing-comma
+  - repo: https://github.com/pre-commit/mirrors-isort
+    rev: v5.5.2
+    hooks:
+      - id: isort
+  - repo: https://gitlab.com/pycqa/flake8
+    rev: 3.8.4
+    hooks:
+    - id: flake8
+  - repo: local
+    hooks:
+    -   id: pytest-no-only
+        name: check for @pytest.mark.only
+        description: 'A search for the `@pytest.mark.only` decorator'
+        entry: '@pytest.mark.only'
+        language: pygrep
+        files: 'test_*'
+        types: [python]

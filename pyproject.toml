@@ -1,0 +1,107 @@
+[tool.poetry]
+name = "mars-rover"
+version = "0.0.1"
+description = ""
+authors = ["Alexandre Savio <alexsavio@gmail.com>"]
+packages = [
+    { include = "mars_rover", from = "src" },
+]
+classifiers = [
+    "Topic :: Software Development :: Build Tools",
+    "Topic :: Software Development :: Libraries :: Python Modules"
+]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+[tool.poetry.dev-dependencies]
+pre-commit = { version = "*", optional = true }
+colorama = { version = "*", optional = true }
+watchdog = { version = "*", optional = true }
+pdbpp = { version = "*", optional = true }
+python-semantic-release = "^7.11.0"
+isort = "*"
+flake8 = { version = ">=3.9.0" }
+flake8-bugbear = "*"
+flake8-commas = "*"
+flake8-docstrings = "*"
+flake8-import-order = "*"
+flake8-per-file-ignores = "*"
+mccabe = "*"
+pep8-naming = "*"
+autopep8 = "*"
+pytest = "^6.2.2"
+pytest-cov = "*"
+pytest-xdist = "*"
+pytest-mock = "*"
+mypy = "*"
+coverage = "*"
+pydocstyle = "*"
+black = "*"
+
+[build-system]
+requires = [
+    "poetry-core>=1.0.0",
+    "wheel",
+    "setuptools"
+]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.extras]
+test = [
+    "isort",
+    "flake8",
+    "flake8-bugbear",
+    "flake8-commas",
+    "flake8-docstrings",
+    "flake8-import-order",
+    "flake8-per-file-ignores",
+    "mccabe",
+    "pep8-naming",
+    "autopep8",
+    "pep8-naming",
+    "pytest",
+    "pytest-cov",
+    "pytest-xdist",
+    "pytest-mock",
+    "mypy",
+    "coverage",
+    "wily",
+    "pydocstyle",
+    "black",
+    "psutil"
+]
+dev-tools = [
+    "pre-commit",
+    "colorama",
+    "watchdog",
+    "pdbpp"
+]
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q --color=yes"
+testpaths = [
+    "src/tests",
+]
+
+[tool.isort]
+src_paths = ["src"]
+multi_line_output = "VERTICAL_HANGING_INDENT"
+include_trailing_comma = "true"
+length_sort = "true"
+use_parentheses = "true"
+force_single_line = "false"
+skip_glob = [".tox", ".venv", "venv"]
+known_first_party = ["mars_rover"]
+sections = [
+    "FUTURE", "STDLIB", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"
+]
+
+[semantic_release]
+branch = "master"
+version_variable = "version.py:__version__"
+commit_version_number = "true"
+commit_subject = "chore(release): [skip ci] {version}"
+upload_to_pypi = "false"
+upload_to_release = "false"

@@ -1,0 +1,46 @@
+---
+name: Application CI
+
+on:
+  pull_request:
+    paths:
+      - 'src/**'
+  push:
+    branches:
+      - main
+
+jobs:
+  codeChecks:
+    name: Check style and run tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: '3.9'
+
+      - name: Load cached Poetry local folder
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache/pypoetry
+          key: dev-poetry-${{ hashFiles('poetry.lock') }}
+          restore-keys: |
+            dev-poetry-
+
+      - name: Install CI dependencies
+        run: make install-ci
+
+      - name: Black code
+        run: poetry run black --check src
+
+      - name: Check imports order
+        run: poetry run isort -c src
+
+      - name: Flake8 code
+        run: poetry run flake8 src
+
+      - name: Test code
+        run: poetry run pytest -x src --cov src
