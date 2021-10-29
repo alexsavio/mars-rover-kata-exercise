@@ -94,6 +94,9 @@ use_parentheses = "true"
 force_single_line = "false"
 skip_glob = [".tox", ".venv", "venv"]
 known_first_party = ["mars_rover"]
+known_third_party = [
+    "pytest",
+]
 sections = [
     "FUTURE", "STDLIB", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"
 ]
