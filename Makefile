@@ -58,24 +58,29 @@ clean-mypy:
 .PHONY: clean-precommit
 # clean up the pre-commit caches
 clean-precommit:
-	pre-commit clean
+	poetry run pre-commit clean
 
 .PHONY: pre-commit
 # run the pre-commit checks
 pre-commit:
-	pre-commit run --all-files
+	poetry run pre-commit run --all-files
+
+.PHONY: lint
+# run flake8 against src
+lint:
+	poetry run flake8 src
 
 .PHONY: isort
 # run isort against src
 isort:
-	isort src
+	poetry run isort src
 
 .PHONY: black
 # run black against src
 black:
-	black src
+	poetry run black src
 
 .PHONY: mypy
 # run mypy against src
 mypy:
-	mypy src
+	poetry run mypy src
