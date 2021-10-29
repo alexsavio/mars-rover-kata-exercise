@@ -86,13 +86,19 @@ testpaths = [
 ]
 
 [tool.isort]
-src_paths = ["src"]
+profile = "black"
+line_length = 79
 multi_line_output = "VERTICAL_HANGING_INDENT"
+src_paths = [
+    "src",
+]
+force_grid_wrap = "0"
+ensure_newline_before_comments = "True"
 include_trailing_comma = "true"
 length_sort = "true"
 use_parentheses = "true"
 force_single_line = "false"
-skip_glob = [".tox", ".venv", "venv"]
+skip_glob = [".venv", "venv"]
 known_first_party = ["mars_rover"]
 known_third_party = [
     "pytest",
@@ -102,7 +108,7 @@ sections = [
 ]
 
 [semantic_release]
-branch = "master"
+branch = "main"
 version_variable = "version.py:__version__"
 commit_version_number = "true"
 commit_subject = "chore(release): [skip ci] {version}"
